@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">FindP</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="user_name">User Name</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create">Create</string>
+    <string name="update">Update</string>
+    <string name="settings">Settings</string>
+    <string name="PARK" />
+    <string name="park">PARK</string>
+    <string name="show_in_map">Show in map</string>
+    <string name="search_again">search again</string>
+    <string name="string">string</string>
+    <string name="click_to_set_avatar">Click to set Avatar</string>
+    <string name="update_parking">update_parking</string>
+    <string name="add_parking">add_parking</string>
+    <string name="all_parking">all_parking</string>
+
+    <string-array name="role_array">
+        <item>PLAYER</item>
+        <item>MANAGER</item>
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activites.Parking.AddOrUpdateParkingActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Parking"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/exo_bold"
+        android:textSize="40dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Name the park:"
+            android:fontFamily="@font/exo_bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_margin="5dp"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/parking_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorAccent"
+            android:fontFamily="@font/exo_bold">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="name"
+                android:inputType="text"
+                android:fontFamily="@font/exo_bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHighlight="@color/colorPrimary"
+                android:textSize="18dp"
+                android:textStyle="bold">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/exo_bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/label_of_radioBtn"
+            android:text="Is the park active ?">
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_of_radioBtn"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/parking_active"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:buttonTint="@color/colorAccent"
+                android:checked="true"
+                android:fontFamily="@font/exo_bold"
+                android:outlineAmbientShadowColor="@color/colorAccent"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/parking_not_active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:buttonTint="@color/colorAccent"
+                android:fontFamily="@font/exo_bold"
+                android:outlineAmbientShadowColor="@color/colorAccent"
+                android:text="No"
+                android:textColor="@color/colorAccent"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Lat:"
+                android:fontFamily="@font/exo_bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_margin="5dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/parking_lat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorAccent"
+                android:fontFamily="@font/exo_bold">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="number|numberSigned|numberDecimal"
+                    android:fontFamily="@font/exo_bold"
+                    android:textColor="@color/colorAccent"
+                    android:hint="lat"
+                    android:textSize="18dp"
+                    android:textStyle="bold">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Lng:"
+                android:fontFamily="@font/exo_bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/parking_lng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorAccent"
+                android:fontFamily="@font/exo_bold">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="number|numberSigned|numberDecimal"
+                    android:fontFamily="@font/exo_bold"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18dp"
+                    android:hint="lng"
+                    android:textStyle="bold">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_parking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="add parking"
+        android:textColor="@color/colorAccent"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
+

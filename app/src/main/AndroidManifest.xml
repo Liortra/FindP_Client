@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.findp">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activites.Settings.UpdateActivity"></activity>
+        <activity android:name=".activites.Parking.AddOrUpdateParkingActivity" />
+        <activity android:name=".activites.Parking.UnParkingActivity" />
+        <activity android:name=".activites.Settings.ManagerActivity" />
+        <activity android:name=".activites.Map.MapActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity android:name=".activites.Parking.ParkingActivity" />
+        <activity android:name=".activites.Parking.SorryActivity" />
+        <activity android:name=".activites.Parking.ResultsActivity" />
+        <activity android:name=".activites.Parking.ScanningActivity" />
+        <activity android:name=".activites.Settings.SettingsActivity" />
+        <activity android:name=".activites.Start.RegistrationActivity" />
+        <activity android:name=".activites.Start.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activites.Parking.MainActivity" />
+    </application>
+
+</manifest>

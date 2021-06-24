@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activites.Settings.SettingsActivity">
+
+    <ImageView
+        android:id="@+id/back_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/back_arrow"/>
+
+    <ImageView
+        android:id="@+id/findP_title"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:src="@drawable/findp_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:id="@+id/setting_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Settings"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/exo_bold"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/findP_title"/>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editText_userName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setting_label"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textColorHint="@color/colorAccent"
+        app:counterEnabled="true"
+        android:fontFamily="@font/exo_bold"
+        app:counterMaxLength="30"
+        android:layout_marginTop="10dp"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="user_name"
+            android:inputType="text"
+            android:fontFamily="@font/exo_bold"
+            android:maxLength="31"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textSize="16dp"
+            android:textStyle="bold">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/click_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_bold"
+        android:text="Click to set Avatar:"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editText_userName"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
+
+    <LinearLayout
+        android:id="@+id/list_of_images"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/click_TextView"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/exo_bold"
+        android:textStyle="bold"
+        android:background="@drawable/buttonshape"
+        android:layout_below="@id/list_of_images"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="16dp"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activites.Start.LoginActivity">
+
+    <ImageView
+        android:id="@+id/findP_title"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:src="@drawable/findp_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editText_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColorHint="@color/colorAccent"
+        android:fontFamily="@font/exo_bold"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLength="31"
+            android:fontFamily="@font/exo_bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textSize="16dp"
+            android:textStyle="bold">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/exo_bold"
+        android:textStyle="bold"
+        android:background="@drawable/buttonshape"
+        android:layout_below="@id/editText_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/signUp_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:layout_below="@id/login_btn"
+        android:textSize="16dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/exo_bold"
+        android:textStyle="bold"
+        android:background="@drawable/underline_text"/>
+
+</RelativeLayout>
