@@ -20,7 +20,7 @@ class ResultsActivity : AppCompatActivity() {
 
     //ProgressDialog mProgressBar;
     //    private ElementEntity[] data;
-    private var data: Array<ParkingData>
+    private lateinit var data: Array<ParkingData>
     private var playerUserEntity: UserEntity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

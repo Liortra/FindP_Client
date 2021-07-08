@@ -10,7 +10,6 @@ import app.findp.R
 import app.findp.activites.Parking.MainActivity
 import app.findp.activites.Parking.UnParkingActivity
 import app.findp.activites.Settings.ManagerActivity
-import app.findp.activites.Start.LoginActivity
 import app.findp.entities.ActionEntity
 import app.findp.entities.ElementEntity
 import app.findp.entities.UserEntity
@@ -27,7 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-class LoginActivity : AppCompatActivity() {
+open class LoginActivity : AppCompatActivity() {
     private val IS_USER_PARKED = "isUserParked"
     private var editText_email: TextInputLayout? = null
     private var login_btn: Button? = null
@@ -77,7 +76,6 @@ class LoginActivity : AppCompatActivity() {
                             "Something wrong: $response",
                             Toast.LENGTH_SHORT
                         ).show()
-                        return@setOnClickListener
                     } else {
                         Log.i("TAG", "onResponse: " + response.code())
                         Toast.makeText(this@LoginActivity, "Login User", Toast.LENGTH_SHORT).show()
@@ -89,10 +87,10 @@ class LoginActivity : AppCompatActivity() {
                                 userEntity.userId!!.domain,
                                 userEntity.userId!!.email, userEntity.username, 1, 0
                             )
-                            checkManager!!.enqueue(object : Callback<Array<ElementEntity?>> {
+                            checkManager!!.enqueue(object : Callback<Array<ElementEntity?>?> {
                                 override fun onResponse(
-                                    call: Call<Array<ElementEntity?>>,
-                                    response: Response<Array<ElementEntity?>>
+                                    call: Call<Array<ElementEntity?>?>,
+                                    response: Response<Array<ElementEntity?>?>
                                 ) {
                                     Log.i("TAG", "onResponse: " + response.code())
                                     Toast.makeText(
@@ -110,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                                 override fun onFailure(
-                                    call: Call<Array<ElementEntity?>>,
+                                    call: Call<Array<ElementEntity?>?>,
                                     t: Throwable
                                 ) {
                                     Toast.makeText(
@@ -119,7 +117,6 @@ class LoginActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                     Log.i("TAG", "onFailure: $t")
-                                    return@setOnClickListener
                                 }
                             })
                         }
@@ -130,7 +127,6 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Failure create User", Toast.LENGTH_SHORT)
                         .show()
                     Log.i("TAG", "onFailure: $t")
-                    return@setOnClickListener
                 }
             })
         }
@@ -148,13 +144,14 @@ class LoginActivity : AppCompatActivity() {
                 null, InvokedBy(userEntity!!.userId), HashMap()
             )
         )
-        actionCall!!.enqueue(object : Callback<Any> {
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+
+        actionCall!!.enqueue(object : Callback<Any?> {
+            override fun onResponse(call: Call<Any?>, response: Response<Any?>) {
                 if (response.isSuccessful) {
                     val isUserParked = response.body() as Boolean
                     Log.i(
                         "TAG",
-                        "onResponse: " + response.code() + "  " + "  " + response.errorBody() + "  " + response.message().javaClass + "  " + response.body().javaClass
+                        "onResponse: " + response.code() + "  " + "  " + response.errorBody() + "  " + response.message().javaClass + "  " + (response.body() as Boolean).javaClass
                     )
                     Toast.makeText(
                         this@LoginActivity,
@@ -187,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+            override fun onFailure(call: Call<Any?>, t: Throwable) {
                 Toast.makeText(this@LoginActivity, "Failure getAll", Toast.LENGTH_SHORT).show()
                 Log.i("TAG", "onFailure: $t")
                 return
@@ -195,7 +192,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    companion object {
+    companion object{
         const val USER = "user"
         const val ELEMENT = "element"
         const val ACTION = "action"

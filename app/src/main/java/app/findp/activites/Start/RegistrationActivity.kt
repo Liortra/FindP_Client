@@ -36,7 +36,7 @@ import java.util.*
 class RegistrationActivity : AppCompatActivity(), OnItemSelectedListener {
     private var editText_email: TextInputLayout? = null
     private var editText_userName: TextInputLayout? = null
-    private var avatar_imageView: ImageView? = null
+//    private var avatar_imageView: ImageView? = null
     private var role_spinner: Spinner? = null
     private var create_btn: Button? = null
     private var url: Uri? = null
@@ -71,7 +71,7 @@ class RegistrationActivity : AppCompatActivity(), OnItemSelectedListener {
     private fun init() {
         editText_email = findViewById<View>(R.id.editText_email) as TextInputLayout
         editText_userName = findViewById<View>(R.id.editText_userName) as TextInputLayout
-        avatar_imageView = findViewById<View>(R.id.avatar_imageView) as ImageView
+//        avatar_imageView = findViewById<View>(R.id.avatar_imageView) as ImageView
         create_btn = findViewById<View>(R.id.create_btn) as Button
         role_spinner = findViewById<View>(R.id.roleSpinner) as Spinner
 
@@ -105,8 +105,8 @@ class RegistrationActivity : AppCompatActivity(), OnItemSelectedListener {
         val from = arrayOf("image", "headline")
         val to = intArrayOf(R.id.imageViewLogo, R.id.textViewHeadline1)
         val simpleAdapter = SimpleAdapter(baseContext, list, R.layout.list_view_activity, from, to)
-        listView.setAdapter(simpleAdapter)
-        listView.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+        listView?.setAdapter(simpleAdapter)
+        listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
             view.isSelected = true
             avatar = drawableName[position]
         })
@@ -209,10 +209,10 @@ class RegistrationActivity : AppCompatActivity(), OnItemSelectedListener {
                             manager.userId!!.domain, manager.userId!!.email,
                             manager.username, 1, 0
                         )
-                        callElement!!.enqueue(object : Callback<Array<ElementEntity?>> {
+                        callElement!!.enqueue(object : Callback<Array<ElementEntity?>?> {
                             override fun onResponse(
-                                call: Call<Array<ElementEntity?>>,
-                                response: Response<Array<ElementEntity?>>
+                                call: Call<Array<ElementEntity?>?>,
+                                response: Response<Array<ElementEntity?>?>
                             ) {
                                 if (!response.isSuccessful) {
                                     Log.i("TAG", "onResponse: " + response.code())
@@ -242,7 +242,7 @@ class RegistrationActivity : AppCompatActivity(), OnItemSelectedListener {
                             }
 
                             override fun onFailure(
-                                call: Call<Array<ElementEntity?>>,
+                                call: Call<Array<ElementEntity?>?>,
                                 t: Throwable
                             ) {
                                 Toast.makeText(
@@ -307,7 +307,7 @@ class RegistrationActivity : AppCompatActivity(), OnItemSelectedListener {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             Util.GALLERY_REQUEST -> if (resultCode == RESULT_OK && data != null) {
-                avatar_imageView!!.setImageURI(data.data)
+//                avatar_imageView!!.setImageURI(data.data)
                 url = data.data
             }
         }

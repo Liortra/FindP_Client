@@ -21,7 +21,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
     var mapAPI: GoogleMap? = null
     var mapFragment: SupportMapFragment? = null
     var back_btn: ImageView? = null
-    var data: Array<ParkingData>
+    lateinit var data: Array<ParkingData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)

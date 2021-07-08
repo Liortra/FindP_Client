@@ -68,8 +68,8 @@ class UnParkingActivity : AppCompatActivity() {
                 null, InvokedBy(userEntity!!.userId), HashMap()
             )
         )
-        actionCall!!.enqueue(object : Callback<Any> {
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+        actionCall!!.enqueue(object : Callback<Any?> {
+            override fun onResponse(call: Call<Any?>, response: Response<Any?>) {
                 if (response.isSuccessful) {
                     Log.i(
                         "TAG",
@@ -98,7 +98,7 @@ class UnParkingActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+            override fun onFailure(call: Call<Any?>, t: Throwable) {
                 Toast.makeText(this@UnParkingActivity, "Failure getAll", Toast.LENGTH_SHORT).show()
                 Log.i("TAG", "onFailure: $t")
                 return
