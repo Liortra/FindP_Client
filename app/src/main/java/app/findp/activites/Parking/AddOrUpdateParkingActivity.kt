@@ -86,10 +86,10 @@ class AddOrUpdateParkingActivity : AppCompatActivity() {
             10,
             0
         )
-        allParkingWithDistanceZero!!.enqueue(object : Callback<Array<ElementEntity?>> {
+        allParkingWithDistanceZero!!.enqueue(object : Callback<Array<ElementEntity?>?> {
             override fun onResponse(
-                call: Call<Array<ElementEntity?>>,
-                response: Response<Array<ElementEntity?>>
+                call: Call<Array<ElementEntity?>?>,
+                response: Response<Array<ElementEntity?>?>
             ) {
                 Log.i("TAG", "onResponse: " + response.code())
                 Toast.makeText(
@@ -112,7 +112,7 @@ class AddOrUpdateParkingActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Array<ElementEntity?>>, t: Throwable) {
+            override fun onFailure(call: Call<Array<ElementEntity?>?>, t: Throwable) {
                 Toast.makeText(
                     this@AddOrUpdateParkingActivity,
                     "Failure to find children",

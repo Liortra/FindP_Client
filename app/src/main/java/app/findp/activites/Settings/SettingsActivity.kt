@@ -83,8 +83,8 @@ class SettingsActivity constructor() : AppCompatActivity() {
         val to: IntArray = intArrayOf(R.id.imageViewLogo, R.id.textViewHeadline1)
         val simpleAdapter: SimpleAdapter =
             SimpleAdapter(getBaseContext(), list, R.layout.list_view_activity, from, to)
-        listView.setAdapter(simpleAdapter)
-        listView.setOnItemClickListener(object : OnItemClickListener {
+        listView?.setAdapter(simpleAdapter)
+        listView?.setOnItemClickListener(object : OnItemClickListener {
             public override fun onItemClick(
                 parent: AdapterView<*>?,
                 view: View,

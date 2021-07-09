@@ -118,7 +118,7 @@ class UpdateActivity() : AppCompatActivity() {
         parkToUpdate!!.name = nameTextBX!!.text.toString().trim { it <= ' ' }
         parkToUpdate!!.location =
             Location(latTextBX!!.text.toString().toDouble(), lngTextBX!!.text.toString().toDouble())
-        parkToUpdate!!.active = if ((active == "Yes")) true else false
+        parkToUpdate!!.active = (active?.equals( "Yes"))
     }
 
     companion object {

@@ -10,16 +10,16 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 
 object Util {
     //const
-    const val domain = "2020b.lior.trachtman"
+    const val domain = "FindP"
     const val GALLERY_REQUEST = 1
-    const val ipAndPort = "192.168.10.76:8083" //"ipconfig:port";
+    const val ipAndPort = "192.168.1.197:8083" //"ipconfig:port";
 
     // static methods
     @JvmStatic
     fun createOkHttpClient(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        return Builder().addInterceptor(httpLoggingInterceptor).build()
+        return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
     }
 
     @JvmStatic

@@ -32,7 +32,7 @@ class ManagerActivity constructor() : AppCompatActivity() {
     private var updateParkingBtn: Button? = null
     private var editChoice: Button? = null
     private var logout_btn: ImageView? = null
-    var children: Array<ElementEntity?>
+    lateinit var children: Array<ElementEntity?>
     private var managerUserEntity: UserEntity? = null
     private var managerElementEntity: ElementEntity? = null
     private var elementService: ElementService? = null
@@ -120,10 +120,10 @@ class ManagerActivity constructor() : AppCompatActivity() {
                             managerUserEntity!!.userId!!.email,
                             parkingElement
                         )
-                    createParkingElement!!.enqueue(object : Callback<ElementEntity> {
+                    createParkingElement!!.enqueue(object : Callback<ElementEntity?> {
                         public override fun onResponse(
-                            call: Call<ElementEntity>,
-                            response: Response<ElementEntity>
+                            call: Call<ElementEntity?>,
+                            response: Response<ElementEntity?>
                         ) {
                             Log.i("TAG", "onResponse: " + response.code())
                             Toast.makeText(
@@ -170,7 +170,7 @@ class ManagerActivity constructor() : AppCompatActivity() {
                             })
                         }
 
-                        public override fun onFailure(call: Call<ElementEntity>, t: Throwable) {
+                        public override fun onFailure(call: Call<ElementEntity?>, t: Throwable) {
                             Toast.makeText(
                                 this@ManagerActivity,
                                 "*** Failure with creating parking place ***",
@@ -204,10 +204,10 @@ class ManagerActivity constructor() : AppCompatActivity() {
                     managerElementEntity!!.elementId!!.domain,
                     managerElementEntity!!.elementId!!.id
                 )
-            allChildrenElements!!.enqueue(object : Callback<Array<ElementEntity?>> {
+            allChildrenElements!!.enqueue(object : Callback<Array<ElementEntity?>?> {
                 public override fun onResponse(
-                    call: Call<Array<ElementEntity?>>,
-                    response: Response<Array<ElementEntity?>>
+                    call: Call<Array<ElementEntity?>?>,
+                    response: Response<Array<ElementEntity?>?>
                 ) {
                     Log.i("TAG", "onResponse: " + response.code())
                     Toast.makeText(
@@ -220,7 +220,7 @@ class ManagerActivity constructor() : AppCompatActivity() {
                     arrangeAllChildrenInScrollView()
                 }
 
-                public override fun onFailure(call: Call<Array<ElementEntity?>>, t: Throwable) {
+                public override fun onFailure(call: Call<Array<ElementEntity?>?>, t: Throwable) {
                     Toast.makeText(
                         this@ManagerActivity,
                         "Failure to find children",
@@ -327,10 +327,10 @@ class ManagerActivity constructor() : AppCompatActivity() {
                         elementId!!.get(indexOfElement)!!.domain,
                         elementId!!.get(indexOfElement)!!.id
                     )
-                    specElement!!.enqueue(object : Callback<ElementEntity> {
+                    specElement!!.enqueue(object : Callback<ElementEntity?> {
                         public override fun onResponse(
-                            call: Call<ElementEntity>,
-                            response: Response<ElementEntity>
+                            call: Call<ElementEntity?>,
+                            response: Response<ElementEntity?>
                         ) {
                             Log.i("TAG", "onResponse: " + response.code())
                             Toast.makeText(
@@ -351,7 +351,7 @@ class ManagerActivity constructor() : AppCompatActivity() {
 //                                    Double.parseDouble(latlng[1])));
                         }
 
-                        public override fun onFailure(call: Call<ElementEntity>, t: Throwable) {
+                        public override fun onFailure(call: Call<ElementEntity?>, t: Throwable) {
                             Toast.makeText(
                                 this@ManagerActivity,
                                 "Failure to fetching specific element",

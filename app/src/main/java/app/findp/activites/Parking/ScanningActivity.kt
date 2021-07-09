@@ -1,13 +1,28 @@
 package app.findp.activites.Parking
 
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import app.findp.R
+import app.findp.activites.Start.LoginActivity
+import app.findp.data.ParkingData
+import app.findp.entities.ElementEntity
+import app.findp.entities.UserEntity
 import app.findp.entities.utils.Location
 import app.findp.entities.utils.Util
+import app.findp.service.ElementService
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 import java.util.*
 
 class ScanningActivity : AppCompatActivity() {
@@ -17,7 +32,7 @@ class ScanningActivity : AppCompatActivity() {
     private var scanningMsg: TextView? = null
     private var playerUserEntity: UserEntity? = null
     private var elementService: ElementService? = null
-    private var parkingData: Array<ParkingData?>
+    private  lateinit var parkingData: Array<ParkingData?>
     private val MyLatMockup = 32.1150148
     private val MyLngMockup = 34.8162585
     protected override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,15 +59,15 @@ class ScanningActivity : AppCompatActivity() {
     var rotateAnimation: RotateAnimation? = null
     private fun rotate() {
         rotateAnimation = RotateAnimation(
-            0, 360,
+            0F, 360F,
             RotateAnimation.RELATIVE_TO_SELF, .5f,
             RotateAnimation.RELATIVE_TO_SELF, .5f
         )
-        rotateAnimation.setDuration(2000)
-        rotateAnimation.setRepeatCount(Animation.ABSOLUTE)
-        rotateAnimation.setAnimationListener(object : Animation.AnimationListener {
+        rotateAnimation!!.setDuration(2000)
+        rotateAnimation!!.setRepeatCount(Animation.ABSOLUTE)
+        rotateAnimation!!.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
-                scanningMsg.setVisibility(View.VISIBLE)
+                scanningMsg!!.setVisibility(View.VISIBLE)
             }
 
             override fun onAnimationEnd(animation: Animation) {
@@ -60,7 +75,7 @@ class ScanningActivity : AppCompatActivity() {
             }
 
             override fun onAnimationRepeat(animation: Animation) {
-                if (scanningMsg.getVisibility() == View.INVISIBLE) scanningMsg.setVisibility(View.VISIBLE) else scanningMsg.setVisibility(
+                if (scanningMsg!!.getVisibility() == View.INVISIBLE) scanningMsg!!.setVisibility(View.VISIBLE) else scanningMsg!!.setVisibility(
                     View.INVISIBLE
                 )
             }
@@ -71,14 +86,14 @@ class ScanningActivity : AppCompatActivity() {
     //                        iconImg.startAnimation(rotateAnimation);
     val allElementsByLocation: Unit
         get() {
-            val elementsCall: Call<Array<ElementEntity>> = elementService.getAllElementsByLocation(
-                playerUserEntity.userId.domain,
-                playerUserEntity.userId.email, "32.1149197", "34.8159152", DISTANCE, 10, 0
-            )
-            elementsCall.enqueue(object : Callback<Array<ElementEntity>> {
+            val elementsCall: Call<Array<ElementEntity?>?> = elementService!!.getAllElementsByLocation(
+                playerUserEntity!!.userId!!.domain,
+                playerUserEntity!!.userId!!.email, "32.1149197", "34.8159152", DISTANCE, 10, 0
+            )!!
+            elementsCall.enqueue(object : Callback<Array<ElementEntity?>?> {
                 override fun onResponse(
-                    call: Call<Array<ElementEntity>>,
-                    response: Response<Array<ElementEntity>>
+                    call: Call<Array<ElementEntity?>?>,
+                    response: Response<Array<ElementEntity?>?>
                 ) {
                     if (response.isSuccessful) {
                         Log.i(
@@ -129,7 +144,7 @@ class ScanningActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<Array<ElementEntity>>, t: Throwable) {
+                override fun onFailure(call: Call<Array<ElementEntity?>?>, t: Throwable) {
                     Toast.makeText(this@ScanningActivity, "Failure getAll", Toast.LENGTH_SHORT)
                         .show()
                     Log.i("TAG", "onFailure: $t")
@@ -138,10 +153,10 @@ class ScanningActivity : AppCompatActivity() {
             })
         }
 
-    private fun filterTakenPark(elementEntityData: Array<ElementEntity>): Array<ElementEntity> {
+    private fun filterTakenPark(elementEntityData: Array<ElementEntity?>): Array<ElementEntity> {
         val list: MutableList<ElementEntity> = ArrayList<ElementEntity>()
         for (elementEntity in elementEntityData) {
-            if (!(elementEntity.elementAttributes.get(IS_TAKEN) as Boolean)) {
+            if (!(elementEntity!!.elementAttributes!!.get(IS_TAKEN) as Boolean)) {
                 list.add(elementEntity)
             }
         }
@@ -152,25 +167,25 @@ class ScanningActivity : AppCompatActivity() {
         val parkingData: Array<ParkingData?> = arrayOfNulls<ParkingData>(elementEntityData.size)
         for (i in elementEntityData.indices) {
             parkingData[i] = ParkingData(
-                elementEntityData[i].name,
-                elementEntityData[i].location,
-                elementEntityData[i].elementId,
+                elementEntityData[i].name!!,
+                elementEntityData[i].location!!,
+                elementEntityData[i].elementId!!,
                 java.lang.Boolean.parseBoolean(
-                    elementEntityData[i].elementAttributes.get(IS_TAKEN).toString()
+                    elementEntityData[i].elementAttributes!!.get(IS_TAKEN).toString()
                 )
             )
-            parkingData[i].calculateDistance(userLocationMockup)
+            parkingData[i]!!.calculateDistance(userLocationMockup!!)
         }
         return parkingData
     }
 
     fun sortByDistance(arr: Array<ParkingData?>) {
         val n = arr.size
-        for (i in 0 until n - 1) for (j in 0 until n - i - 1) if (arr[j].distance > arr[j + 1].distance) {
+        for (i in 0 until n - 1) for (j in 0 until n - i - 1) if (arr[j]!!.distance > arr[j + 1]!!.distance) {
             // swap arr[j+1] and arr[i]
-            val temp: Double = arr[j].distance
-            arr[j].distance = arr[j + 1].distance
-            arr[j + 1].distance = temp
+            val temp: Double = arr[j]!!.distance
+            arr[j]!!.distance = arr[j + 1]!!.distance
+            arr[j + 1]!!.distance = temp
         }
     }
 
